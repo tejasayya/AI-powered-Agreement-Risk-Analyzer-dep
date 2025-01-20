@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 # Set up Gemini API
-API_KEY = os.environ.get("MY_API_KEY")
+API_KEY = os.environ.get("MY_API_KEY") or st.secrets["MY_API_KEY"]
 
 if not API_KEY:
     raise ValueError("API key not found in environment variables.")
