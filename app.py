@@ -3,9 +3,18 @@ import PyPDF2
 import google.generativeai as genai
 from io import StringIO
 import plotly.graph_objects as go
+import os
+from dotenv import load_dotenv
 
+
+load_dotenv()
 # Set up Gemini API
-genai.configure(api_key="AIzaSyD0dsA5fgIIiISSLSGkFDNz_0caCpwcFnM")  # Replace with your Gemini API key
+API_KEY = os.environ.get("MY_API_KEY")
+
+if not API_KEY:
+    raise ValueError("API key not found in environment variables.")
+
+genai.configure(api_key=API_KEY)  # Replace with your Gemini API key
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.title("AI-Powered Agreement Risk Analyzer")
